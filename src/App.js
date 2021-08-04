@@ -45,8 +45,8 @@ export default function App() {
 					More than just <br /> shorter links
 				</h1>
 				<p>
-					Build your brand's recognition and get detailed <br />{" "}
-					insights on how your links are performing
+					Build your brand's recognition and get detailed <br /> insights on how
+					your links are performing
 				</p>
 				<button className="green_button">Get Started</button>
 			</div>
@@ -94,9 +94,7 @@ function UrlShorter({ confirm }) {
 		const value = input.current.value
 		confirm({
 			link: value,
-			shortenLink: `https://regi.ink/k${Math.floor(
-				Math.random() * 1000
-			)}`,
+			shortenLink: `https://regi.ink/k${Math.floor(Math.random() * 1000)}`,
 			state: false,
 		})
 		input.current.value = ""
@@ -104,11 +102,7 @@ function UrlShorter({ confirm }) {
 
 	return (
 		<div className="shorter_container">
-			<input
-				type="text"
-				placeholder="Shorten a link here..."
-				ref={input}
-			/>
+			<input type="text" placeholder="Shorten a link here..." ref={input} />
 			<button className="green_button" onClick={addNewUrl}>
 				Shorten it!
 			</button>
@@ -128,9 +122,7 @@ function Url({ link, shortenLink, state, updateState, animate }) {
 				className="btn"
 				onClick={updateState}
 				style={{
-					backgroundColor: !state
-						? "var(--cyan)"
-						: "var(--dark_violet)",
+					backgroundColor: !state ? "var(--cyan)" : "var(--dark_violet)",
 				}}
 			>
 				{!state ? "Copy" : "Copied!"}
