@@ -197,6 +197,13 @@ nav li {
 	box-shadow: 0px 4px 10px #ddd;
 }
 
+.url_container button {
+	font-size: 14px;
+}
+.url_container button:focus {
+	color: white !important;
+}
+
 .btn {
 	color: white;
 	padding: 10px 30px;
@@ -357,12 +364,12 @@ nav .fa-bars {
 
 @media only screen and (max-width: 600px) {
 	.shorter_wrapper {
-		padding-top: 130px;
+		padding-top: 80x;
 	}
 
 	.shorter_container {
 		flex-direction: column;
-		top: -100px;
+		top: -90px;
 		padding: 16px;
 		width: calc(100% - 32px);
 		left: 16px;
@@ -378,22 +385,20 @@ nav .fa-bars {
 
 	.url_container {
 		flex-direction: column;
+		width: calc(100% - 32px);
+		margin: 0px auto;
+		margin-bottom: 16px;
+		padding: 0px;
 	}
 
-	.url_container {
-		padding: 0px !important;
-	}
 	.url_container p {
-		padding: 10px 20px;
-		margin: 0px;
-		width: calc(100% - 40px);
-	}
-	.url_container p:nth-child(1) {
+		width: 100%;
+		padding: 16px;
 		border-bottom: 1px solid #ddd;
 	}
 	.url_container button {
-		width: calc(100% - 40px);
-		margin: 20px;
+		width: calc(100% - 32px) !important;
+		margin: 16px !important;
 	}
 
 	.landing_section {

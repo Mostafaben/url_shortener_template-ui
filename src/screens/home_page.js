@@ -12,7 +12,6 @@ import { loginDialogReducerTypes } from "./../state/reducers/login_dialog_reduce
 
 export default function HomePage() {
 	const urls = useSelector((state) => state.shortenUrlsReducer)
-	console.log(urls)
 	const dispatch = useDispatch()
 
 	function updateUrlState(id) {

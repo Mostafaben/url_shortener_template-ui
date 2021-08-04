@@ -18,7 +18,6 @@ export default function LoginDialog() {
 	}
 
 	function handleWrapperClick(e) {
-		console.log(e.target, wrapperRef.current)
 		if (e.target == wrapperRef.current) closeDialog()
 	}
 
