@@ -1,0 +1,45 @@
+.loginDialogWrapper {
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	z-index: 4;
+	animation: dialogWrapper 200ms;
+}
+
+.loginDialogContainer {
+	width: min(450px, 100vw);
+	min-height: 100vh;
+	background-color: white;
+	padding: 24px;
+}
+
+.openAnimation {
+	animation: openLoginDialog 400ms;
+}
+.closeAnimation {
+	animation: closeLoadingDialog 400ms;
+}
+
+@keyframes openLoginDialog {
+	0% {
+		transform: translateX(400px);
+		opacity: 0;
+	}
+}
+
+@keyframes closeLoadingDialog {
+	100% {
+		opacity: 0;
+		transform: translateX(400px);
+	}
+}
+
+@keyframes dialogWrapper {
+	0% {
+		opacity: 0;
+	}
+}
