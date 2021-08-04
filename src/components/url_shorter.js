@@ -7,7 +7,6 @@ export default function UrlShorter({ confirm }) {
 		confirm({
 			link: value,
 			shortenLink: `https://regi.ink/k${Math.floor(Math.random() * 1000)}`,
-			state: false,
 		})
 		input.current.value = ""
 	}

@@ -1,40 +1,34 @@
 import React from "react"
-import { useDispatch } from "react-redux"
-import sweetAlert from "sweetalert2"
+import { useDispatch, useSelector } from "react-redux"
+import { openErrorDialog, openSuccessDialog } from "../core/services/ui_service"
+import {
+	addUrlAction,
+	copyUrlAction,
+} from "./../state/actions/shorten_urls_actions"
+
 import Url from "./../components/url"
 import UrlShorter from "./../components/url_shorter"
 import { loginDialogReducerTypes } from "./../state/reducers/login_dialog_reducer"
 
 export default function HomePage() {
-	const [urls, setUrls] = React.useState([])
+	const urls = useSelector((state) => state.shortenUrlsReducer)
+	console.log(urls)
 	const dispatch = useDispatch()
 
-	function updateUrlState(index) {
-		let new_urls = [...urls]
-		new_urls[index].state = !new_urls[index].state
-		setUrls([...new_urls])
+	function updateUrlState(id) {
+		dispatch(copyUrlAction(id))
 	}
 
 	function openLoginDialog() {
 		dispatch({ type: loginDialogReducerTypes.SHOW })
 	}
 
-	function addNewUrl(newUrl) {
-		if (newUrl.link.length > 0) {
-			let new_urls = [...urls]
-			new_urls.unshift(newUrl)
-			setUrls([...new_urls])
-			sweetAlert.fire({
-				title: "Success",
-				text: "Url shorten successfully",
-				icon: "success",
-			})
+	function addNewUrl({ link, shortenLink }) {
+		if (link.length > 0) {
+			dispatch(addUrlAction(link, shortenLink))
+			openSuccessDialog("url shorten successfully")
 		} else {
-			sweetAlert.fire({
-				title: "error",
-				text: "must have a valid link",
-				icon: "error",
-			})
+			openErrorDialog("invalid url format")
 		}
 	}
 
@@ -56,13 +50,13 @@ export default function HomePage() {
 				<div className="shorter_wrapper wrapper">
 					<UrlShorter confirm={addNewUrl} />
 					<div className="results">
-						{urls.map(({ link, shortenLink, state }, index) => (
+						{urls.map(({ link, shortenLink, isCopied, id }, index) => (
 							<Url
-								key={link + index}
+								key={id}
 								link={link}
 								shortenLink={shortenLink}
-								state={state}
-								updateState={() => updateUrlState(index)}
+								isCopied={isCopied}
+								updateState={() => updateUrlState(id)}
 								animate={index == 0 ? true : false}
 							/>
 						))}

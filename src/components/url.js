@@ -1,7 +1,7 @@
 export default function Url({
 	link,
 	shortenLink,
-	state,
+	isCopied,
 	updateState,
 	animate,
 }) {
@@ -16,10 +16,10 @@ export default function Url({
 				className="btn"
 				onClick={updateState}
 				style={{
-					backgroundColor: !state ? "var(--cyan)" : "var(--dark_violet)",
+					backgroundColor: !isCopied ? "var(--cyan)" : "var(--dark_violet)",
 				}}
 			>
-				{!state ? "Copy" : "Copied!"}
+				{!isCopied ? "Copy" : "Copied!"}
 			</button>
 		</div>
 	)
