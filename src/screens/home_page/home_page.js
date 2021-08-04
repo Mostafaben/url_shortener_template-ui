@@ -1,14 +1,17 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { openErrorDialog, openSuccessDialog } from "../core/services/ui_service"
+import {
+	openErrorDialog,
+	openSuccessDialog,
+} from "../../core/services/ui_service"
 import {
 	addUrlAction,
 	copyUrlAction,
-} from "./../state/actions/shorten_urls_actions"
+} from "../../state/actions/shorten_urls_actions"
 
-import Url from "./../components/url"
-import UrlShorter from "./../components/url_shorter"
-import { loginDialogReducerTypes } from "./../state/reducers/login_dialog_reducer"
+import Url from "../../components/url"
+import UrlShorter from "../../components/url_shorter"
+import { loginDialogReducerTypes } from "../../state/reducers/login_dialog_reducer"
 
 export default function HomePage() {
 	const urls = useSelector((state) => state.shortenUrlsReducer)

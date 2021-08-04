@@ -14,7 +14,6 @@
 	width: min(450px, 100vw);
 	min-height: 100vh;
 	background-color: white;
-	padding: 24px;
 }
 
 .openAnimation {
@@ -42,4 +41,46 @@
 	0% {
 		opacity: 0;
 	}
+}
+
+.content {
+	padding: 32px 24px;
+	padding-top: 20vh;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.content span {
+	color: #888;
+	font-weight: lighter;
+	margin: 8px 0px;
+}
+
+.content i {
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	font-size: 20px;
+}
+.content i:hover {
+	transform: rotate(180deg);
+}
+
+.content input {
+	margin: 8px 0px;
+}
+.googleLogin {
+	padding: 16px;
+	border-radius: 40px;
+	border: none;
+	margin-top: auto;
+}
+
+.loginBtn {
+	margin-top: 24px;
+	background-color: #59c3ee;
+	padding: 16px;
+	border-radius: 40px;
+	border: none;
+	color: white;
 }

@@ -31,7 +31,21 @@ export default function LoginDialog() {
 				ref={dialogRef}
 				className={`${style.loginDialogContainer} ${style.openAnimation}`}
 			>
-				<i className="fas fa-times" onClick={closeDialog}></i>
+				<div className={style.content}>
+					<i className="fas fa-times" onClick={closeDialog}></i>
+					<h2>Welcome Back,</h2>
+					<span>Sign to continue</span>
+					<input placeholder="email" type="email" className="form-control" />
+					<input
+						placeholder="**********"
+						type="password"
+						className="form-control"
+					/>
+					<button className={style.loginBtn}>Sign in</button>
+					<span style={{ marginLeft: "auto" }}>Forget password ?</span>
+					<span style={{ margin: "auto" }}>Or</span>
+					<button className={style.googleLogin}>Sign in with Google</button>
+				</div>
 			</div>
 		</div>
 	) : null
