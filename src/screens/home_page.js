@@ -35,12 +35,10 @@ export default function HomePage() {
 	return (
 		<div>
 			<div className="landing_section wrapper">
-				<h1>
-					More than just <br /> shorter links
-				</h1>
+				<h1>More than just shorter links</h1>
 				<p>
-					Build your brand's recognition and get detailed <br /> insights on how
-					your links are performing
+					Build your brand's recognition and get detailed insights on how your
+					links are performing
 				</p>
 				<button className="green_button" onClick={openLoginDialog}>
 					Get Started

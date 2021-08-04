@@ -2,6 +2,7 @@
 
 * {
 	font-family: "Poppins";
+	transition-duration: 400ms;
 }
 
 body,
@@ -52,6 +53,11 @@ nav {
 	padding: 30px 40px;
 	max-width: 1366px !important;
 	margin: 0px auto;
+}
+
+nav h3 {
+	margin: 0px;
+	padding: 0px;
 }
 
 nav h1 {
@@ -281,6 +287,74 @@ footer .icons {
 	color: white;
 }
 
+nav .sideMenu {
+	display: none;
+	flex-direction: column;
+	background-color: var(--very_dark_blue);
+	height: 100vh;
+	position: fixed;
+	width: 100vw;
+	top: 0px;
+	justify-content: center;
+	left: 0px;
+}
+
+.openAnimation {
+	animation: openSideMenu 400ms;
+}
+.closeAnimation {
+	animation: closeSideMenu 400ms;
+}
+@keyframes openSideMenu {
+	0% {
+		transform: translateX(-100vw);
+		opacity: 0;
+	}
+}
+
+@keyframes closeSideMenu {
+	100% {
+		transform: translateX(-100vw);
+		opacity: 0;
+	}
+}
+
+.sideMenu ul {
+	display: flex;
+	flex-direction: column;
+	font-size: 24px;
+}
+
+.sideMenu li {
+	padding: 8px 0px;
+}
+.sideMenu li:hover {
+	color: white;
+	transform: scale(1.2) translateX(24px);
+}
+
+.sideMenu button {
+	margin: 16px;
+}
+
+.sideMenu i {
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	color: white;
+	font-size: 18px;
+	transition-duration: 400ms;
+	cursor: pointer;
+}
+
+.sideMenu i:hover {
+	transform: rotate(180deg);
+}
+
+nav .fa-bars {
+	display: none;
+}
+
 @media only screen and (max-width: 600px) {
 	.shorter_wrapper {
 		padding-top: 130px;
@@ -334,10 +408,20 @@ footer .icons {
 		font-size: 15px;
 	}
 
-	nav ul {
+	nav .links {
 		display: none;
 	}
-	nav button {
+	nav .navBtn {
 		display: none;
+	}
+
+	nav .fa-bars {
+		display: block;
+		margin-left: auto;
+	}
+
+	nav .sideMenu {
+		display: flex;
+		z-index: 4;
 	}
 }
