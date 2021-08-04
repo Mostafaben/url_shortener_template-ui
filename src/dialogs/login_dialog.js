@@ -43,7 +43,6 @@ export default function LoginDialog() {
 					/>
 					<button className={style.loginBtn}>Sign in</button>
 					<span style={{ marginLeft: "auto" }}>Forget password ?</span>
-					<span style={{ margin: "auto" }}>Or</span>
 					<button className={style.googleLogin}>Sign in with Google</button>
 				</div>
 			</div>
