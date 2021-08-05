@@ -1,9 +1,10 @@
 import React from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { loginDialogReducerTypes } from "../state/reducers/login_dialog_reducer"
 
 export default function NavBar() {
 	const dispatch = useDispatch()
+	const user = useSelector((state) => state.authenticationReducer)
 	const sideMenuRef = React.useRef()
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
@@ -32,12 +33,20 @@ export default function NavBar() {
 				<li>Pricing</li>
 				<li>Resources</li>
 			</ul>
-			<button className="navBtn login" onClick={openLoginDialog}>
-				Login
-			</button>
-			<button className="navBtn green_button" onClick={openLoginDialog}>
-				Sign Up
-			</button>
+			{!user?.email ? (
+				<>
+					<button className="navBtn login" onClick={openLoginDialog}>
+						Login
+					</button>
+					<button className="navBtn green_button" onClick={openLoginDialog}>
+						Sign Up
+					</button>
+				</>
+			) : (
+				<p style={{ marginLeft: "auto" }} className="navBtn">
+					{user.email}
+				</p>
+			)}
 			<i className="fas fa-bars" onClick={openSideMenu}></i>
 
 			{isMenuOpen ? (
@@ -48,9 +57,25 @@ export default function NavBar() {
 						<li>Pricing</li>
 						<li>Resources</li>
 					</ul>
-					<button className="green_button" onClick={openLoginDialog}>
-						Login
-					</button>
+					{user?.email ? (
+						<p
+							style={{
+								color: "hsl(257, 7%, 63%)",
+								marginLeft: 32,
+								fontSize: 18,
+								borderTop: "1px solid hsl(257, 7%, 63%)",
+								width: "70%",
+								marginTop: "20px",
+								padding: "32px 0px",
+							}}
+						>
+							{user.email}
+						</p>
+					) : (
+						<button className="green_button" onClick={openLoginDialog}>
+							Login
+						</button>
+					)}
 				</div>
 			) : null}
 		</nav>

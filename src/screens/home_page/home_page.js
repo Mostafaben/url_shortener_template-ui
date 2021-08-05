@@ -1,28 +1,28 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {
-	openErrorDialog,
-	openSuccessDialog,
-} from "../../core/services/ui_service"
-import {
-	addUrlAction,
-	copyUrlAction,
-} from "../../state/actions/shorten_urls_actions"
-
+import { useHistory } from "react-router-dom"
 import Url from "../../components/url"
 import UrlShorter from "../../components/url_shorter"
+import { openErrorDialog, openSuccessDialog } from "../../core/services/ui_service"
+import { addUrlAction, copyUrlAction } from "../../state/actions/shorten_urls_actions"
 import { loginDialogReducerTypes } from "../../state/reducers/login_dialog_reducer"
 
 export default function HomePage() {
 	const urls = useSelector((state) => state.shortenUrlsReducer)
 	const dispatch = useDispatch()
+	const history = useHistory()
+	const user = useSelector((state) => state.authenticationReducer)
 
 	function updateUrlState(id) {
 		dispatch(copyUrlAction(id))
 	}
 
 	function openLoginDialog() {
-		dispatch({ type: loginDialogReducerTypes.SHOW })
+		if (!user.email) {
+			dispatch({ type: loginDialogReducerTypes.SHOW })
+		} else {
+			history.push("/profile")
+		}
 	}
 
 	function addNewUrl({ link, shortenLink }) {
@@ -39,8 +39,7 @@ export default function HomePage() {
 			<div className="landing_section wrapper">
 				<h1>More than just shorter links</h1>
 				<p>
-					Build your brand's recognition and get detailed insights on how your
-					links are performing
+					Build your brand's recognition and get detailed insights on how your links are performing
 				</p>
 				<button className="green_button" onClick={openLoginDialog}>
 					Get Started

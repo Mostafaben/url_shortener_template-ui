@@ -1,17 +1,19 @@
-import {
-	FacebookFilled,
-	InstagramFilled,
-	GithubFilled,
-	LinkedinFilled,
-} from "@ant-design/icons"
-import { useDispatch } from "react-redux"
+import { FacebookFilled, GithubFilled, InstagramFilled, LinkedinFilled } from "@ant-design/icons"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
 import { loginDialogReducerTypes } from "../state/reducers/login_dialog_reducer"
 
 export default function Footer() {
 	const dispatch = useDispatch()
-
+	const user = useSelector((state) => state.authenticationReducer)
+	const history = useHistory()
 	function openLoginDialog() {
-		dispatch({ type: loginDialogReducerTypes.SHOW })
+		if (!user.email) {
+			dispatch({ type: loginDialogReducerTypes.SHOW })
+		} else {
+			history.push("/profile")
+			window.scrollTo({ top: 0 })
+		}
 	}
 
 	return (

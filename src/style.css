@@ -430,3 +430,14 @@ nav .fa-bars {
 		z-index: 4;
 	}
 }
+
+.loadingIndicatorContainer {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+}
