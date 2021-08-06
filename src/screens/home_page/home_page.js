@@ -4,7 +4,11 @@ import { useHistory } from "react-router-dom"
 import Url from "../../components/url"
 import UrlShorter from "../../components/url_shorter"
 import { openErrorDialog, openSuccessDialog } from "../../core/services/ui_service"
-import { addUrlAction, copyUrlAction } from "../../state/actions/shorten_urls_actions"
+import {
+	addUrlAction,
+	cleanUrlsAction,
+	copyUrlAction,
+} from "../../state/actions/shorten_urls_actions"
 import { loginDialogReducerTypes } from "../../state/reducers/login_dialog_reducer"
 
 export default function HomePage() {
@@ -21,6 +25,7 @@ export default function HomePage() {
 		if (!user.email) {
 			dispatch({ type: loginDialogReducerTypes.SHOW })
 		} else {
+			window.scrollTo({ top: 0, behavior: "smooth" })
 			history.push("/profile")
 		}
 	}
@@ -49,7 +54,7 @@ export default function HomePage() {
 				<div className="shorter_wrapper wrapper">
 					<UrlShorter confirm={addNewUrl} />
 					<div className="results">
-						{urls.map(({ link, shortenLink, isCopied, id }, index) => (
+						{[...urls].reverse().map(({ link, shortenLink, isCopied, id }, index) => (
 							<Url
 								key={id}
 								link={link}
@@ -59,6 +64,9 @@ export default function HomePage() {
 								animate={index == 0 ? true : false}
 							/>
 						))}
+						<span className="clear_all" onClick={() => dispatch(cleanUrlsAction())}>
+							Clear all
+						</span>
 					</div>
 				</div>
 			</div>

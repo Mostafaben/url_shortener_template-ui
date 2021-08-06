@@ -15,10 +15,15 @@ export default function App() {
 	const dispatch = useDispatch()
 
 	React.useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((user) => {
-			dispatch(authenticationLoginAction(user))
-			dispatch({ type: loginDialogReducerTypes.HIDE })
-		})
+		const unsubscribe = auth.onAuthStateChanged(
+			(user) => {
+				dispatch(authenticationLoginAction(user))
+				dispatch({ type: loginDialogReducerTypes.HIDE })
+			},
+			(error) => {
+				alert(error.message)
+			}
+		)
 		return unsubscribe
 	}, [])
 

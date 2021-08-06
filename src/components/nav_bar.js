@@ -1,11 +1,13 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
 import { loginDialogReducerTypes } from "../state/reducers/login_dialog_reducer"
 
 export default function NavBar() {
 	const dispatch = useDispatch()
 	const user = useSelector((state) => state.authenticationReducer)
 	const sideMenuRef = React.useRef()
+	const history = useHistory()
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
 	function openLoginDialog() {
@@ -27,21 +29,18 @@ export default function NavBar() {
 
 	return (
 		<nav>
-			<h3>Shortly</h3>
+			<h3 style={{ cursor: "pointer" }} onClick={() => history.push("/")}>
+				Shortly
+			</h3>
 			<ul className="links">
 				<li>Features</li>
 				<li>Pricing</li>
 				<li>Resources</li>
 			</ul>
 			{!user?.email ? (
-				<>
-					<button className="navBtn login" onClick={openLoginDialog}>
-						Login
-					</button>
-					<button className="navBtn green_button" onClick={openLoginDialog}>
-						Sign Up
-					</button>
-				</>
+				<button className="navBtn login" onClick={openLoginDialog}>
+					Login
+				</button>
 			) : (
 				<p style={{ marginLeft: "auto" }} className="navBtn">
 					{user.email}

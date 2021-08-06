@@ -441,3 +441,16 @@ nav .fa-bars {
 	left: 0px;
 	right: 0px;
 }
+
+.fullScreen {
+	width: 100vw;
+	height: 100vh;
+}
+.clear_all {
+	margin-top: 8px;
+	margin-left: auto !important;
+	color: var(--grayish_violet);
+	margin-right: 32px;
+	font-size: 14px;
+	cursor: pointer;
+}
