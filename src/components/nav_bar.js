@@ -42,9 +42,13 @@ export default function NavBar() {
 					Login
 				</button>
 			) : (
-				<p style={{ marginLeft: "auto" }} className="navBtn">
-					{user.email}
-				</p>
+				<div className="profileContainer navBtn">
+					<div>
+						<p>{user.displayName}</p>
+						<span>{user.email}</span>
+					</div>
+					<img src={user.photoURL} />
+				</div>
 			)}
 			<i className="fas fa-bars" onClick={openSideMenu}></i>
 
@@ -56,20 +60,14 @@ export default function NavBar() {
 						<li>Pricing</li>
 						<li>Resources</li>
 					</ul>
-					{user?.email ? (
-						<p
-							style={{
-								color: "hsl(257, 7%, 63%)",
-								marginLeft: 32,
-								fontSize: 18,
-								borderTop: "1px solid hsl(257, 7%, 63%)",
-								width: "70%",
-								marginTop: "20px",
-								padding: "32px 0px",
-							}}
-						>
-							{user.email}
-						</p>
+					{user ? (
+						<div className="profileContainer">
+							<div>
+								<p>{user.displayName}</p>
+								<span>{user.email}</span>
+							</div>
+							<img src={user.photoURL} />
+						</div>
 					) : (
 						<button className="green_button" onClick={openLoginDialog}>
 							Login

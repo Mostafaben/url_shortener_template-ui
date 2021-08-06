@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Footer from "./components/footer"
 import NavBar from "./components/nav_bar"
+import PageLoading from "./components/page_loading"
 import { auth } from "./core/firebase"
 import LoginDialog from "./dialogs/login_dialog"
 import HomePage from "./screens/home_page/home_page"
@@ -30,6 +31,7 @@ export default function App() {
 	return (
 		<Router>
 			<div className="main_container">
+				<PageLoading />
 				<LoginDialog />
 				<NavBar />
 				<Switch>

@@ -1,6 +1,82 @@
 .mainContainer {
 	min-height: 100vh;
-	max-width: 1200px;
+	max-width: 1024px;
 	margin: 0px auto;
-	padding: 32px 0px;
+	padding: 32px 24px;
+}
+
+.profileContainer {
+	background-color: whitesmoke;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 24px;
+	border-radius: 8px;
+	margin-bottom: 24px;
+}
+
+.profileContainer img {
+	margin-right: 24px;
+	height: 80px;
+	width: 80px;
+	border-radius: 8px;
+}
+
+.profileContainer p {
+	font-size: 14px;
+}
+
+.profileContainer span {
+	font-size: 13px;
+	color: #888;
+}
+
+.actions {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+	margin-bottom: 24px;
+}
+
+.link {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	padding: 16px 32px;
+	margin-bottom: 24px;
+	/* box-shadow: 0px 1px 4px #DDD; */
+	border: 1px solid #ddd;
+	border-radius: 8px;
+}
+.link p,
+.link a {
+	padding: 4px 0px;
+	width: fit-content;
+	max-width: 60%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.link p {
+	font-size: 14px;
+	color: #888;
+}
+.darkLink {
+	background-color: whitesmoke;
+}
+
+.linkActions {
+	position: absolute;
+	top: 24px;
+	right: 24px;
+}
+
+.linkActions i {
+	color: var(--cyan);
+	margin-left: 24px;
+	cursor: pointer;
+}
+
+.linkActions i:hover {
+	color: var(--dark_violet);
 }
