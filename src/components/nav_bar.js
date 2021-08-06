@@ -1,6 +1,7 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
+import { logout } from "../core/services/authentication_service"
 import { loginDialogReducerTypes } from "../state/reducers/login_dialog_reducer"
 
 export default function NavBar() {
@@ -10,6 +11,10 @@ export default function NavBar() {
 	const history = useHistory()
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
+	function signOut() {
+		logout()
+		history.push("/")
+	}
 	function openLoginDialog() {
 		if (isMenuOpen) {
 			closeSideMenu()
@@ -67,6 +72,7 @@ export default function NavBar() {
 								<span>{user.email}</span>
 							</div>
 							<img src={user.photoURL} />
+							<i className="fas fa-sign-out-alt" onClick={signOut}></i>
 						</div>
 					) : (
 						<button className="green_button" onClick={openLoginDialog}>

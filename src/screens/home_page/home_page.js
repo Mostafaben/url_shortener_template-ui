@@ -22,7 +22,7 @@ export default function HomePage() {
 	}
 
 	function openLoginDialog() {
-		if (!user.email) {
+		if (!user) {
 			dispatch({ type: loginDialogReducerTypes.SHOW })
 		} else {
 			window.scrollTo({ top: 0, behavior: "smooth" })

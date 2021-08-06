@@ -21,6 +21,17 @@ export function loginWithGoogle() {
 	})
 }
 
+export function logout() {
+	auth
+		.signOut()
+		.then(() => {
+			store.dispatch({ type: authenticationReducerTypes.LOGOUT })
+		})
+		.catch(({ message }) => {
+			handleLoginError(message)
+		})
+}
+
 function handleLoginError(message) {
 	store.dispatch({ type: loginDialogReducerTypes.STOP_LOADING })
 	store.dispatch({ type: authenticationReducerTypes.CLEAR })

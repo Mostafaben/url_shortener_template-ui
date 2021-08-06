@@ -18,8 +18,11 @@ export default function App() {
 	React.useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged(
 			(user) => {
-				dispatch(authenticationLoginAction(user))
+				if (user) {
+					dispatch(authenticationLoginAction(user))
+				}
 				dispatch({ type: loginDialogReducerTypes.HIDE })
+				dispatch({ type: loginDialogReducerTypes.STOP_LOADING })
 			},
 			(error) => {
 				alert(error.message)

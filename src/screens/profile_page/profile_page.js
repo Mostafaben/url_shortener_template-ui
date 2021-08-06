@@ -1,5 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
+import { logout } from "../../core/services/authentication_service"
+import CreateLinkDialog from "../../dialogs/create_link_dialog"
 import style from "./profile_page.module.css"
 
 const Links = [
@@ -35,10 +38,22 @@ const Links = [
 
 export default function ProfilePage() {
 	const user = useSelector((state) => state.authenticationReducer)
-
-	useEffect(() => {
+	const [dialogOpen, setDialogOpen] = React.useState(false)
+	React.useEffect(() => {
 		// get user links
 	}, [])
+
+	function handleCreateLinkConfirm(data) {
+		console.log(data)
+		setDialogOpen(false)
+	}
+	function handleCreateLinkCancel() {
+		setDialogOpen(false)
+	}
+
+	function openDialog() {
+		setDialogOpen(true)
+	}
 
 	return (
 		<div className={style.mainContainer}>
@@ -55,15 +70,20 @@ export default function ProfilePage() {
 						</div>
 					</div>
 					<div className={style.actions}>
-						<button className="btn btn-primary">New link</button>
+						<button className="btn btn-primary" onClick={openDialog}>
+							New link
+						</button>
 					</div>
 					<div className={style.links}>
-						{Links.map((link, index) => {
+						{Links.map((link) => {
 							return <Link link={link} key={link.id} />
 						})}
 					</div>
 				</>
 			)}
+			{dialogOpen ? (
+				<CreateLinkDialog onCancel={handleCreateLinkCancel} onConfirm={handleCreateLinkConfirm} />
+			) : null}
 		</div>
 	)
 }

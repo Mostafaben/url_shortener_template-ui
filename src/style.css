@@ -102,6 +102,14 @@ nav .sideMenu .profileContainer {
 	padding-top: 10vh;
 	/* border-top: 1px solid #ddd; */
 }
+
+nav .sideMenu .profileContainer i {
+	position: absolute;
+	right: 24px;
+	color: white;
+	font-size: 18px;
+}
+
 nav .sideMenu .profileContainer p {
 	color: white;
 }
@@ -385,7 +393,7 @@ nav .sideMenu {
 	margin: 16px;
 }
 
-.sideMenu i {
+.sideMenu .fa-times {
 	position: absolute;
 	top: 24px;
 	right: 24px;
@@ -395,7 +403,7 @@ nav .sideMenu {
 	cursor: pointer;
 }
 
-.sideMenu i:hover {
+.sideMenu .fa-times:hover {
 	transform: rotate(180deg);
 }
 
