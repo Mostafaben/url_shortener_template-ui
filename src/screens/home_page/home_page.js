@@ -11,6 +11,32 @@ import {
 } from "../../state/actions/shorten_urls_actions"
 import { loginDialogReducerTypes } from "../../state/reducers/login_dialog_reducer"
 
+import icon1 from "./../../assets/icon-detailed-records.svg"
+import icon2 from "./../../assets/icon-brand-recognition.svg"
+import icon3 from "./../../assets/icon-fully-customizable.svg"
+
+const IMAGES = [
+	{
+		src: icon1,
+		title: "Detailed Records",
+		description:
+			"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+	},
+	{
+		src: icon2,
+		title: "Brand Recognition",
+		description:
+			"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+	},
+	{
+		src: icon3,
+		title: "Fully Customizable",
+
+		description:
+			"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+	},
+]
+
 export default function HomePage() {
 	const urls = useSelector((state) => state.shortenUrlsReducer)
 	const dispatch = useDispatch()
@@ -67,6 +93,23 @@ export default function HomePage() {
 						<span className="clear_all" onClick={() => dispatch(cleanUrlsAction())}>
 							Clear all
 						</span>
+					</div>
+
+					<h1 className="title">Features</h1>
+					<div className="row">
+						{IMAGES.map(({ src, title, description }, index) => {
+							return (
+								<div className="col col-12 col-md-12 col-lg-4" key={index}>
+									<div className="featureCard">
+										<div className="imageWrapper">
+											<img src={src} />
+										</div>
+										<h4>{title}</h4>
+										<p>{description}</p>
+									</div>
+								</div>
+							)
+						})}
 					</div>
 				</div>
 			</div>

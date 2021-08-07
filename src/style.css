@@ -503,3 +503,51 @@ nav .fa-bars {
 	font-size: 14px;
 	cursor: pointer;
 }
+
+.featureCard {
+	padding: 24px;
+	padding-top: 48px;
+	border-radius: 4px;
+	background-color: white;
+	box-shadow: 2px 4px 10px #ccc;
+	margin-bottom: 60;
+	position: relative;
+}
+
+.featureCard .imageWrapper {
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	border-radius: 40px;
+	background-color: var(--very_dark_violet);
+	top: -40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.featureCard img {
+	width: 34px;
+	height: 34px;
+}
+.featureCard h4 {
+	margin-bottom: 16px;
+}
+
+.featureCard p {
+	color: var(--grayish_violet);
+}
+.row {
+	margin: 0px;
+	max-width: 100%;
+	padding: 0px 8px;
+}
+
+.title {
+	font-size: 32px;
+	font-weight: bolder;
+	color: var(--very_dark_blue);
+	padding: 0px;
+	margin: 10vh 0px 10vh 0px;
+
+	text-align: center;
+}
