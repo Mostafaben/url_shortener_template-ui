@@ -66,7 +66,7 @@ export default function HomePage() {
 	}
 
 	return (
-		<div>
+		<div className="pageContainer">
 			<div className="landing_section wrapper">
 				<h1>More than just shorter links</h1>
 				<p>

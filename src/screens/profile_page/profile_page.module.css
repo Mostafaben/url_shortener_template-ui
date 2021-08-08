@@ -3,6 +3,14 @@
 	max-width: 1024px;
 	margin: 0px auto;
 	padding: 32px 24px;
+	animation: pageAnimation 300ms;
+}
+
+@keyframes pageAnimation {
+	0% {
+		opacity: 0;
+		transform: translateX(-200px);
+	}
 }
 
 .profileContainer {

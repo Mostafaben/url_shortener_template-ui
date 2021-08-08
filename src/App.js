@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch } from "react-redux"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
 import Footer from "./components/footer"
 import NavBar from "./components/nav_bar"
 import PageLoading from "./components/page_loading"
@@ -43,6 +43,9 @@ export default function App() {
 					</Route>
 					<Route path="/profile" exact>
 						<ProfilePage />
+					</Route>
+					<Route path="**">
+						<Redirect to="/" />
 					</Route>
 				</Switch>
 				<Footer />

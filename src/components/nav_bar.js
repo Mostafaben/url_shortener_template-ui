@@ -18,8 +18,9 @@ export default function NavBar() {
 		}
 	}
 	function signOut() {
+		console.log(history)
+		history.goBack()
 		logout()
-		history.push("/")
 	}
 	function openLoginDialog() {
 		if (isMenuOpen) {

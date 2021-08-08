@@ -47,6 +47,10 @@ button:active {
 	transform: scale(0.95);
 }
 
+.pageContainer {
+	animation: pageAnimation 300ms;
+}
+
 .main_container {
 	margin: 0px !important;
 	padding: 0px !important;
@@ -560,4 +564,11 @@ nav .fa-bars {
 	font-weight: bolder;
 	color: var(--very_dark_blue);
 	padding: 0px;
+}
+
+@keyframes pageAnimation {
+	0% {
+		opacity: 0;
+		transform: translateX(-200px);
+	}
 }

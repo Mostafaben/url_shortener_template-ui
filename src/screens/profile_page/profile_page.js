@@ -1,5 +1,6 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
 import { openSuccessDialog } from "../../core/services/ui_service"
 import CreateLinkDialog from "../../dialogs/create_link_dialog"
 import { appDoneFetchingDataAction, appFetchingDataAction } from "../../state/actions/app_actions"
@@ -11,10 +12,16 @@ const Links = []
 export default function ProfilePage() {
 	const user = useSelector((state) => state.authenticationReducer)
 	const dispatch = useDispatch()
+	const history = useHistory()
 	const [dialogOpen, setDialogOpen] = React.useState(false)
 	React.useEffect(() => {
 		// get user links
 	}, [])
+	React.useEffect(() => {
+		if (!user) {
+			history.push("/")
+		}
+	}, [user])
 
 	function handleCreateLinkConfirm(data) {
 		dispatch(appFetchingDataAction())
