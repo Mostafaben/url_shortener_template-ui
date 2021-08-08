@@ -80,3 +80,16 @@
 .linkActions i:hover {
 	color: var(--dark_violet);
 }
+
+.emptyContainer {
+	display: flex;
+	min-height: 40vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.emptyContainer img {
+	height: 80px;
+	margin-bottom: 20px;
+}

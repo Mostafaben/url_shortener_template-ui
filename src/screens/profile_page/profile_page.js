@@ -1,51 +1,28 @@
 import React from "react"
-import { useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
-import { logout } from "../../core/services/authentication_service"
+import { useDispatch, useSelector } from "react-redux"
+import { openSuccessDialog } from "../../core/services/ui_service"
 import CreateLinkDialog from "../../dialogs/create_link_dialog"
+import { appDoneFetchingDataAction, appFetchingDataAction } from "../../state/actions/app_actions"
+import emptyIcon from "./../../assets/inbox.svg"
 import style from "./profile_page.module.css"
 
-const Links = [
-	{
-		id: "124123",
-		link: "https://mostafaben.github.io",
-		shortenLink: "https://localhost:3000/mostafaben",
-		createdAt: new Date().toLocaleDateString(),
-		visited: 30,
-	},
-	{
-		id: "120123",
-		link: "https://mostafaben.github.io",
-		shortenLink: "https://localhost:3000/mostafaben",
-		createdAt: new Date().toLocaleDateString(),
-		visited: 30,
-	},
-	{
-		id: "129123",
-		link: "https://mostafaben.github.io",
-		shortenLink: "https://localhost:3000/mostafaben",
-		createdAt: new Date().toLocaleDateString(),
-		visited: 30,
-	},
-	{
-		id: "123123",
-		link: "https://mostafaben.github.io",
-		shortenLink: "https://localhost:3000/mostafaben",
-		createdAt: new Date().toLocaleDateString(),
-		visited: 30,
-	},
-]
+const Links = []
 
 export default function ProfilePage() {
 	const user = useSelector((state) => state.authenticationReducer)
+	const dispatch = useDispatch()
 	const [dialogOpen, setDialogOpen] = React.useState(false)
 	React.useEffect(() => {
 		// get user links
 	}, [])
 
 	function handleCreateLinkConfirm(data) {
-		console.log(data)
+		dispatch(appFetchingDataAction())
 		setDialogOpen(false)
+		setTimeout(() => {
+			dispatch(appDoneFetchingDataAction())
+			openSuccessDialog("New link has been added")
+		}, 1000)
 	}
 	function handleCreateLinkCancel() {
 		setDialogOpen(false)
@@ -78,6 +55,12 @@ export default function ProfilePage() {
 						{Links.map((link) => {
 							return <Link link={link} key={link.id} />
 						})}
+						{Links.length == 0 ? (
+							<div className={style.emptyContainer}>
+								<img src={emptyIcon} />
+								<p>There is now links for now</p>
+							</div>
+						) : null}
 					</div>
 				</>
 			)}
