@@ -5,6 +5,11 @@
 	transition-duration: 500ms;
 }
 
+p {
+	margin: 0px;
+	padding: 0px;
+}
+
 .btn {
 	font-weight: normal !important;
 	font-size: 14px !important;
@@ -92,6 +97,7 @@ nav .profileContainer {
 	flex-direction: row;
 	margin-left: auto;
 	align-items: center;
+	cursor: pointer;
 }
 
 nav .sideMenu .profileContainer {
@@ -542,12 +548,16 @@ nav .fa-bars {
 	padding: 0px 8px;
 }
 
+.description {
+	margin: 140px 0px;
+	text-align: center;
+}
+.description p {
+	color: var(--grayish_violet);
+}
 .title {
 	font-size: 32px;
 	font-weight: bolder;
 	color: var(--very_dark_blue);
 	padding: 0px;
-	margin: 10vh 0px 10vh 0px;
-
-	text-align: center;
 }

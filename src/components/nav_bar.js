@@ -11,6 +11,12 @@ export default function NavBar() {
 	const history = useHistory()
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
+	function goToProfile() {
+		history.push("/profile")
+		if (isMenuOpen) {
+			closeSideMenu()
+		}
+	}
 	function signOut() {
 		logout()
 		history.push("/")
@@ -47,7 +53,7 @@ export default function NavBar() {
 					Login
 				</button>
 			) : (
-				<div className="profileContainer navBtn">
+				<div className="profileContainer navBtn" onClick={goToProfile}>
 					<div>
 						<p>{user.displayName}</p>
 						<span>{user.email}</span>
@@ -66,7 +72,7 @@ export default function NavBar() {
 						<li>Resources</li>
 					</ul>
 					{user ? (
-						<div className="profileContainer">
+						<div className="profileContainer" onClick={goToProfile}>
 							<div>
 								<p>{user.displayName}</p>
 								<span>{user.email}</span>

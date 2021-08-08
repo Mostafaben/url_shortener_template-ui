@@ -90,12 +90,17 @@ export default function HomePage() {
 								animate={index == 0 ? true : false}
 							/>
 						))}
-						<span className="clear_all" onClick={() => dispatch(cleanUrlsAction())}>
-							Clear all
-						</span>
+						{urls.length > 0 ? (
+							<span className="clear_all" onClick={() => dispatch(cleanUrlsAction())}>
+								Clear all
+							</span>
+						) : null}
 					</div>
 
-					<h1 className="title">Features</h1>
+					<div className="description">
+						<h1 className="title">Advanced Statistics</h1>
+						<p>Track how your links are performing across the web with our advanced dashboard</p>
+					</div>
 					<div className="row">
 						{IMAGES.map(({ src, title, description }, index) => {
 							return (
