@@ -6,8 +6,8 @@
 }
 
 p {
-	margin: 0px;
-	padding: 0px;
+	margin: 0px !important;
+	padding: 0px !important;
 }
 
 .btn {
@@ -310,8 +310,8 @@ footer {
 }
 
 footer .row {
-	padding: 0px;
-	margin: 0px;
+	padding: 0px !important;
+	margin: 0px !important;
 }
 
 footer .col {
@@ -543,7 +543,7 @@ nav .fa-bars {
 	color: var(--grayish_violet);
 }
 .row {
-	margin: 0px;
+	margin: 0px !important;
 	max-width: 100%;
 	padding: 0px 8px;
 }
