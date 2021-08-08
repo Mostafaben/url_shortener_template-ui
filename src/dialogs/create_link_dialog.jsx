@@ -47,7 +47,7 @@ const CreateLinkDialog = ({ onCancel, onConfirm }) => {
 				}`}
 				onSubmit={submitForm}
 			>
-				<p className={style.dialog_header}>Create Link</p>
+				<div className={style.dialog_header}>Create Link</div>
 				<div className={style.dialog_content}>
 					<label>Link</label>
 					<input ref={linkRef} className="form-control" name="link" type="url" required />
