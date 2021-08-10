@@ -11,7 +11,7 @@ const firebaseConfig = {
 	measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 }
 
-const host = process.env.REACT_APP_FIREBASE_HOST
+const host = process.env.REACT_APP_HOST
 
 const urlHost = `${host}links/`
 
