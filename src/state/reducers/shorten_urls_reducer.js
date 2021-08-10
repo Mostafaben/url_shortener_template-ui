@@ -5,7 +5,7 @@ export const shortenUrlsReducerTypes = {
 	COPY: "shorten_urls/copy_url",
 }
 
-const { ADD, DELETE, CLEAN, COPY } = shortenUrlsReducerTypes
+const { ADD, DELETE, SET, CLEAN, COPY } = shortenUrlsReducerTypes
 
 export default function shortenUrlsReducer(state = [], action) {
 	switch (action.type) {
@@ -34,9 +34,9 @@ function copyUrl(state, action) {
 
 function addUrl(state, action) {
 	const {
-		payload: { link, shortenLink, isCopied },
+		payload: { link, shortenLink, isCopied, id },
 	} = action
-	return [...state, { id: state.length + 1, link, shortenLink, isCopied }]
+	return [...state, { id, link, shortenLink, isCopied }]
 }
 
 function removeUrl(state, action) {

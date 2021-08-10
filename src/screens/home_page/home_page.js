@@ -3,39 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import Url from "../../components/url"
 import UrlShorter from "../../components/url_shorter"
-import { openErrorDialog, openSuccessDialog } from "../../core/services/ui_service"
-import {
-	addUrlAction,
-	cleanUrlsAction,
-	copyUrlAction,
-} from "../../state/actions/shorten_urls_actions"
+import { IMAGES } from "../../data/home_page_data"
+import { cleanUrlsAction, copyUrlAction } from "../../state/actions/shorten_urls_actions"
 import { loginDialogReducerTypes } from "../../state/reducers/login_dialog_reducer"
-
-import icon1 from "./../../assets/icon-detailed-records.svg"
-import icon2 from "./../../assets/icon-brand-recognition.svg"
-import icon3 from "./../../assets/icon-fully-customizable.svg"
-
-const IMAGES = [
-	{
-		src: icon1,
-		title: "Detailed Records",
-		description:
-			"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-	},
-	{
-		src: icon2,
-		title: "Brand Recognition",
-		description:
-			"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-	},
-	{
-		src: icon3,
-		title: "Fully Customizable",
-
-		description:
-			"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-	},
-]
 
 export default function HomePage() {
 	const urls = useSelector((state) => state.shortenUrlsReducer)
@@ -56,15 +26,6 @@ export default function HomePage() {
 		}
 	}
 
-	function addNewUrl({ link, shortenLink }) {
-		if (link.length > 0) {
-			dispatch(addUrlAction(link, shortenLink))
-			openSuccessDialog("url shorten successfully")
-		} else {
-			openErrorDialog("invalid url format")
-		}
-	}
-
 	return (
 		<div className="pageContainer">
 			<div className="landing_section wrapper">
@@ -78,7 +39,7 @@ export default function HomePage() {
 			</div>
 			<div className="shorter_section">
 				<div className="shorter_wrapper wrapper">
-					<UrlShorter confirm={addNewUrl} />
+					<UrlShorter />
 					<div className="results">
 						{[...urls].reverse().map(({ link, shortenLink, isCopied, id }, index) => (
 							<Url

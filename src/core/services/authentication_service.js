@@ -32,6 +32,11 @@ export function logout() {
 		})
 }
 
+export function isLoggedIn() {
+	const { authenticationReducer: user } = store.getState()
+	return user
+}
+
 function handleLoginError(message) {
 	store.dispatch({ type: loginDialogReducerTypes.STOP_LOADING })
 	store.dispatch({ type: authenticationReducerTypes.CLEAR })

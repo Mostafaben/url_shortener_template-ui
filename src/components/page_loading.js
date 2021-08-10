@@ -9,10 +9,10 @@ const PageLoading = () => {
 	return (
 		<div className={style.mainContainer}>
 			<LoadingIndicator
-				color="black"
+				color="hsl(180, 66%, 49%)"
 				height={80}
 				width={80}
-				type="spinningBubbles"
+				type="spin"
 				className={style.loadingIndicator}
 			/>
 		</div>

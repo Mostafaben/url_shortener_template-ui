@@ -53,7 +53,6 @@
 	flex-direction: column;
 	padding: 16px 32px;
 	margin-bottom: 24px;
-	/* box-shadow: 0px 1px 4px #DDD; */
 	border: 1px solid #ddd;
 	border-radius: 8px;
 }
@@ -62,10 +61,10 @@
 	padding: 4px 0px;
 	width: fit-content;
 	max-width: 60%;
+	max-height: 30px;
 	overflow: hidden;
-	text-overflow: ellipsis;
 }
-.link p {
+.link span {
 	font-size: 14px;
 	color: #888;
 }

@@ -11,4 +11,6 @@ const firebaseConfig = {
 	measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 }
 
-export { firebaseConfig }
+const urlHost = "https://localhost:3000/links/"
+
+export { firebaseConfig, urlHost }

@@ -1,17 +1,8 @@
-export default function Url({
-	link,
-	shortenLink,
-	isCopied,
-	updateState,
-	animate,
-}) {
+export default function Url({ link, shortenLink, isCopied, updateState, animate }) {
 	return (
-		<div
-			className="url_container"
-			style={{ animationName: animate ? "addNewUrl" : "none" }}
-		>
-			<p>{link}</p>
-			<p style={{ color: "var(--cyan)" }}>{shortenLink}</p>
+		<div className="url_container" style={{ animationName: animate ? "addNewUrl" : "none" }}>
+			<span>{link}</span>
+			<span style={{ color: "var(--cyan)" }}>{shortenLink}</span>
 			<button
 				className="btn"
 				onClick={updateState}

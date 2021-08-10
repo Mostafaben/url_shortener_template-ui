@@ -450,9 +450,9 @@ nav .fa-bars {
 		padding: 0px;
 	}
 
-	.url_container p {
+	.url_container span {
 		width: 100%;
-		padding: 16px;
+		padding: 16px !important;
 		border-bottom: 1px solid #ddd;
 	}
 	.url_container button {

@@ -1,35 +1,31 @@
 import React from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
-import { openSuccessDialog } from "../../core/services/ui_service"
+import { useSelector } from "react-redux"
+import { urlHost } from "../../core/environment"
+import {
+	deleteLinkById,
+	getUserShortenUrls,
+	shortenLinkWithName,
+} from "../../core/services/url_service"
 import CreateLinkDialog from "../../dialogs/create_link_dialog"
-import { appDoneFetchingDataAction, appFetchingDataAction } from "../../state/actions/app_actions"
 import emptyIcon from "./../../assets/inbox.svg"
 import style from "./profile_page.module.css"
 
-const Links = []
-
 export default function ProfilePage() {
 	const user = useSelector((state) => state.authenticationReducer)
-	const dispatch = useDispatch()
-	const history = useHistory()
+	const links = useSelector((state) => state.userUrlsReducer)
 	const [dialogOpen, setDialogOpen] = React.useState(false)
+
+	console.log(links)
+
 	React.useEffect(() => {
-		// get user links
+		setTimeout(() => {
+			getUserShortenUrls()
+		}, 1000)
 	}, [])
-	React.useEffect(() => {
-		if (!user) {
-			history.push("/")
-		}
-	}, [user])
 
 	function handleCreateLinkConfirm(data) {
-		dispatch(appFetchingDataAction())
 		setDialogOpen(false)
-		setTimeout(() => {
-			dispatch(appDoneFetchingDataAction())
-			openSuccessDialog("New link has been added")
-		}, 1000)
+		shortenLinkWithName(data.link, data.name)
 	}
 	function handleCreateLinkCancel() {
 		setDialogOpen(false)
@@ -59,10 +55,10 @@ export default function ProfilePage() {
 						</button>
 					</div>
 					<div className={style.links}>
-						{Links.map((link) => {
+						{links.reverse().map((link) => {
 							return <Link link={link} key={link.id} />
 						})}
-						{Links.length == 0 ? (
+						{links.length == 0 ? (
 							<div className={style.emptyContainer}>
 								<img src={emptyIcon} />
 								<p>There is now links for now</p>
@@ -79,22 +75,26 @@ export default function ProfilePage() {
 }
 
 function Link({ link }) {
+	function deleteLink() {
+		deleteLinkById(link.id)
+	}
+
 	return (
 		<div className={style.link}>
 			<div className={style.linkActions}>
 				<i className="far fa-copy"></i>
-				<i className="far fa-edit"></i>
-				<i className="far fa-trash-alt"></i>
+				<i className="far fa-trash-alt" onClick={deleteLink}></i>
 			</div>
+
 			<a href={link.link} target="_blank">
 				{link.link}
 			</a>
-			<a href={link.shortenLink} target="_blank">
-				{link.shortenLink}
+			<a href={"links/" + link.shortenLink} target="_blank">
+				{urlHost + link.shortenLink}
 			</a>
 			<div style={{ display: "flex", justifyContent: "space-between" }}>
-				<p>Visiter {link.visited}</p>
-				<p>{link.createdAt}</p>
+				<span>Visiter {link.visited}</span>
+				<span>{link.createdAt}</span>
 			</div>
 		</div>
 	)

@@ -18,7 +18,6 @@ export default function NavBar() {
 		}
 	}
 	function signOut() {
-		console.log(history)
 		history.goBack()
 		logout()
 	}

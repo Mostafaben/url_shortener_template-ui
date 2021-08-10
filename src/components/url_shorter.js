@@ -1,22 +1,27 @@
 import React from "react"
-export default function UrlShorter({ confirm }) {
-	const input = React.useRef(null)
+import { shortenLink } from "../core/services/url_service"
+export default function UrlShorter() {
+	const inputRef = React.useRef()
 
-	function addNewUrl() {
-		const value = input.current.value
-		confirm({
-			link: value,
-			shortenLink: `https://regi.ink/k${Math.floor(Math.random() * 1000)}`,
-		})
-		input.current.value = ""
+	function addNewUrl(e) {
+		e.preventDefault()
+		const value = inputRef.current.value
+		shortenLink(value)
+		inputRef.current.value = ""
 	}
 
 	return (
-		<div className="shorter_container">
-			<input type="text" placeholder="Shorten a link here..." ref={input} />
-			<button className="green_button" onClick={addNewUrl}>
+		<form className="shorter_container" onSubmit={addNewUrl}>
+			<input
+				type="url"
+				placeholder="Shorten a link here..."
+				ref={inputRef}
+				required
+				minLength={10}
+			/>
+			<button type="submit" className="green_button">
 				Shorten it!
 			</button>
-		</div>
+		</form>
 	)
 }

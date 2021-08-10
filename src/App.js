@@ -8,6 +8,7 @@ import { auth } from "./core/firebase"
 import LoginDialog from "./dialogs/login_dialog"
 import HomePage from "./screens/home_page/home_page"
 import ProfilePage from "./screens/profile_page/profile_page"
+import { RedirectPage } from "./screens/redirect_page"
 import { authenticationLoginAction } from "./state/actions/authentication_actions"
 import { loginDialogReducerTypes } from "./state/reducers/login_dialog_reducer"
 import "./style.css"
@@ -44,9 +45,12 @@ export default function App() {
 					<Route path="/profile" exact>
 						<ProfilePage />
 					</Route>
-					<Route path="**">
-						<Redirect to="/" />
+					<Route path="/links/:name">
+						<RedirectPage />
 					</Route>
+					{/* <Route path="**">
+						<Redirect to="/" />
+					</Route> */}
 				</Switch>
 				<Footer />
 			</div>
