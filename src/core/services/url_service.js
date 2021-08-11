@@ -22,22 +22,26 @@ export function shortenLink(link) {
 	}
 	createUrl(queryData)
 		.then(() => {
-			store.dispatch(appDoneFetchingDataAction())
 			store.dispatch(addUrlAction(link, queryData.shortenLink))
 		})
 		.catch(() => {
+			openErrorDialog("Url was not created")
+		})
+		.finally(() => {
 			store.dispatch(appDoneFetchingDataAction())
 		})
 }
 
-export async function shortenLinkWithName(link, name = "") {
+export async function shortenLinkWithName(link, name) {
 	store.dispatch(appFetchingDataAction())
+	if (name.length == 0) name = Date.now().toString()
 	const user = isLoggedIn()
 	name = name.replace(/ /g, "-")
 	const count = countDataLength(await NameExists(name))
 	if (count > 0) {
-		name += `-${count}`
+		name += `-${count + 1}`
 	}
+
 	let queryData = {
 		link,
 		shortenLink: name,
@@ -45,16 +49,16 @@ export async function shortenLinkWithName(link, name = "") {
 		createdAt: new Date().toUTCString(),
 		visited: 0,
 	}
+
 	createUrl(queryData)
 		.then((doc) => {
 			openSuccessDialog("Url was created successfully")
-			store.dispatch(appDoneFetchingDataAction())
 			store.dispatch(addUserUrlAction({ ...queryData, id: doc.id }))
 		})
 		.catch(() => {
 			openErrorDialog("Url was not created")
-			store.dispatch(appDoneFetchingDataAction())
 		})
+		.finally(() => store.dispatch(appDoneFetchingDataAction()))
 }
 
 export function getUserShortenUrls() {
@@ -66,22 +70,22 @@ export function getUserShortenUrls() {
 		.get()
 		.then((snapShot) => {
 			const urls = []
-			store.dispatch(appDoneFetchingDataAction())
 			snapShot.forEach((doc) => {
 				urls.push({ ...doc.data(), id: doc.id })
 			})
 			store.dispatch(setUrlsAction(urls))
 		})
-		.catch(() => {
-			store.dispatch(appDoneFetchingDataAction())
+		.catch((error) => {
+			openErrorDialog(error.message)
 		})
+		.finally(() => store.dispatch(appDoneFetchingDataAction()))
 }
 
 export function visitLink(id, visited) {
 	return db
 		.collection("urls")
 		.doc(id)
-		.set({ visited: visited + 1 }, { mergeFields: true })
+		.update({ visited: visited + 1 })
 }
 
 export function getLinkByName(name) {
@@ -89,6 +93,7 @@ export function getLinkByName(name) {
 }
 
 export function deleteLinkById(id) {
+	store.dispatch(appFetchingDataAction())
 	db.collection("urls")
 		.doc(id)
 		.delete()
@@ -99,6 +104,7 @@ export function deleteLinkById(id) {
 		.catch((error) => {
 			openErrorDialog(error.message)
 		})
+		.finally(() => store.dispatch(appDoneFetchingDataAction()))
 }
 
 function NameExists(name) {

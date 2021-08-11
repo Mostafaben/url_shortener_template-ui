@@ -1,8 +1,14 @@
+import { urlHost } from "../core/environment"
+
 export default function Url({ link, shortenLink, isCopied, updateState, animate }) {
 	return (
 		<div className="url_container" style={{ animationName: animate ? "addNewUrl" : "none" }}>
-			<span>{link}</span>
-			<span style={{ color: "var(--cyan)" }}>{shortenLink}</span>
+			<p>
+				Shorten Link:
+				<a style={{ color: "var(--cyan)", marginLeft: "20px" }} href={urlHost + "" + shortenLink}>
+					{urlHost + "" + shortenLink}
+				</a>
+			</p>
 			<button
 				className="btn"
 				onClick={updateState}

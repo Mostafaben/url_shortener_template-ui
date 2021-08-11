@@ -34,7 +34,7 @@ export default function HomePage() {
 					Build your brand's recognition and get detailed insights on how your links are performing
 				</p>
 				<button className="green_button" onClick={openLoginDialog}>
-					Get Started
+					{!user ? "Get Started" : "Go to profile"}
 				</button>
 			</div>
 			<div className="shorter_section">

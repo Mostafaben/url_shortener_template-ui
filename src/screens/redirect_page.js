@@ -18,8 +18,8 @@ export function RedirectPage() {
 				return setLinkExists(false)
 			}
 			links.forEach(async (e) => {
-				const { id, link, visited } = e.data()
-				await visitLink(id, visited)
+				const { link, visited } = e.data()
+				await visitLink(e.id, visited)
 				navigateToLink(link)
 			})
 		})

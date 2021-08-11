@@ -21,7 +21,7 @@ export default function Footer() {
 			<div className="get_started">
 				<h1>Boost your links Today</h1>
 				<button className="green_button" onClick={openLoginDialog}>
-					Get Started
+					{!user ? "Get Started" : "Go to profile"}
 				</button>
 			</div>
 			<div className="content row">

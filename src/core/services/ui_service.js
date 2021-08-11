@@ -16,4 +16,15 @@ function openSuccessDialog(message) {
 	})
 }
 
-export { openSuccessDialog, openErrorDialog }
+function openConfirmDialog({ title, text }) {
+	return sweetAlert.fire({
+		title,
+		text,
+		icon: "question",
+		showCancelButton: "true",
+		cancelButtonText: "Cancel",
+		confirmButtonText: "Confirm",
+	})
+}
+
+export { openSuccessDialog, openErrorDialog, openConfirmDialog }

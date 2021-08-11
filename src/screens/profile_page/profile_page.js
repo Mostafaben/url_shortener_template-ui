@@ -1,6 +1,7 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import { urlHost } from "../../core/environment"
+import { openConfirmDialog } from "../../core/services/ui_service"
 import {
 	deleteLinkById,
 	getUserShortenUrls,
@@ -14,8 +15,6 @@ export default function ProfilePage() {
 	const user = useSelector((state) => state.authenticationReducer)
 	const links = useSelector((state) => state.userUrlsReducer)
 	const [dialogOpen, setDialogOpen] = React.useState(false)
-
-	console.log(links)
 
 	React.useEffect(() => {
 		setTimeout(() => {
@@ -75,8 +74,14 @@ export default function ProfilePage() {
 }
 
 function Link({ link }) {
+	console.log(link)
+
 	function deleteLink() {
-		deleteLinkById(link.id)
+		openConfirmDialog({ title: "Delete Link", text: "Are you sure ?" }).then((result) => {
+			if (result.value) {
+				deleteLinkById(link.id)
+			}
+		})
 	}
 
 	return (

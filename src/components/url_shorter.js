@@ -1,5 +1,6 @@
 import React from "react"
 import { shortenLink } from "../core/services/url_service"
+
 export default function UrlShorter() {
 	const inputRef = React.useRef()
 

@@ -488,6 +488,11 @@ nav .fa-bars {
 		display: flex;
 		z-index: 4;
 	}
+
+	.url_container p {
+		padding: 16px !important;
+		border-bottom: 1px solid #eee;
+	}
 }
 
 .loadingIndicatorContainer {
