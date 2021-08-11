@@ -1,8 +1,8 @@
 import React from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { getLinkByName, visitLink } from "../core/services/url_service"
-
 import notFoundImage from "./../assets/not_found.jpg"
+import loadingImage from "./../assets/loading.gif"
 
 export function RedirectPage() {
 	const [linkExists, setLinkExists] = React.useState(true)
@@ -29,7 +29,11 @@ export function RedirectPage() {
 		<div
 			style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}
 		>
-			{!linkExists ? <img src={notFoundImage} style={{ width: "min(80vw, 500px)" }} /> : null}
+			{!linkExists ? (
+				<img src={notFoundImage} style={{ width: "min(80vw, 500px)" }} />
+			) : (
+				<img src={loadingImage} />
+			)}
 		</div>
 	)
 }
